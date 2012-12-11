@@ -33,7 +33,9 @@ module Carepass
     end
 
     def post(url, query_parameters)
-      response = HTTParty.post(url, :headers => @headers, :body => query_parameters)
+      post_headers = @headers
+      post_headers['Content-Type'] = 'application/json'
+      response = HTTParty.post(url, :headers => post_headers, :body => query_parameters)
       # todo: add catch on failure
     end
 
