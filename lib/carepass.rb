@@ -31,7 +31,9 @@ module Carepass
 
     def upload_workout(query_parameters)
       if query_parameters.first.include? :id
-        response = self.put(ACTIVITY_ENDPOINT, query_parameters)
+        query_parameters.each do |query_set|
+          response = self.put(ACTIVITY_ENDPOINT, query_set)
+        end
       else
         response = self.post(ACTIVITY_ENDPOINT, query_parameters)
       end
@@ -47,7 +49,7 @@ module Carepass
     end
 
     def put(url, query_parameters)
-      response = HTTParty.put(url, :query => query_paramters)
+      response = HTTParty.put(url, :query => query_parameters)
       response.parsed_response
     end
 
