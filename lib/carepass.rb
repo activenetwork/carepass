@@ -31,21 +31,24 @@ module Carepass
 
     def upload_workout(query_parameters)
       if query_parameters.first.include? :id
-        self.put(ACTIVITY_ENDPOINT, query_parameters)
+        response = self.put(ACTIVITY_ENDPOINT, query_parameters)
       else
-        self.post(ACTIVITY_ENDPOINT, query_parameters)
+        response = self.post(ACTIVITY_ENDPOINT, query_parameters)
       end
+      response
     end
 
     def post(url, query_parameters)
       post_headers = @headers
       post_headers['Content-Type'] = 'application/json'
       response = HTTParty.post(url, :headers => post_headers, :body => query_parameters.to_json)
-      # todo: add catch on failure
+      Rails.logger.info(response)
+      response.parsed_response
     end
 
     def put(url, query_parameters)
       response = HTTParty.put(url, :query => query_paramters)
+      response.parsed_response
     end
 
     def get(url, query_parameters=nil)
