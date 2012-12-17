@@ -49,7 +49,7 @@ module Carepass
     end
 
     def put(url, query_parameters)
-      response = HTTParty.put(url, :query => query_parameters)
+      response = HTTParty.put(url, :headers => @headers, :query => query_parameters)
       response.parsed_response
     end
 
