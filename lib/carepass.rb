@@ -30,10 +30,8 @@ module Carepass
     end
 
     def upload_workout(query_parameters)
-      if query_parameters.first.include? :id
-        query_parameters.each do |query_set|
-          response = self.put(ACTIVITY_ENDPOINT, query_set)
-        end
+      if query_parameters.first.include? :id or query_parameters.first.include? 'id'
+        response = self.put(ACTIVITY_ENDPOINT, query_parameters)
       else
         response = self.post(ACTIVITY_ENDPOINT, query_parameters)
       end
