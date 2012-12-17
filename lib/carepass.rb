@@ -49,7 +49,9 @@ module Carepass
     end
 
     def put(url, query_parameters)
-      response = HTTParty.put(url, :headers => @headers, :query => query_parameters)
+      put_headers = @headers
+      put_headers['Content-Type'] = 'application/json'
+      response = HTTParty.put(url, :headers => put_headers, :body => query_parameters.to_json)
       response.parsed_response
     end
 
