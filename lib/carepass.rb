@@ -4,6 +4,7 @@ module Carepass
 
   USER_ENDPOINT = 'https://api.carepass.com/user-directory-api/users/currentUser'
   ACTIVITY_ENDPOINT = USER_ENDPOINT + '/fitness/activities'
+  ACTIVITY_TYPES_ENDPOINT = 'https://api.carepass.com/user-directory-api/fitness/activities/types'
 
   class User
   	attr_accessor :token
