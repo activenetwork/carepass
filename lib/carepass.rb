@@ -38,6 +38,10 @@ module Carepass
       response
     end
 
+    def destroy_workout(id)
+      self.destroy(ACTIVITY_ENDPOINT,id)
+    end
+
     def post(url, query_parameters)
       post_headers = @headers
       post_headers['Content-Type'] = 'application/json'
@@ -56,6 +60,11 @@ module Carepass
     def get(url, query_parameters=nil)
       response = HTTParty.get(url, :headers => @headers, :query => query_parameters)
     end
+
+    def destroy(url,id)
+      response = HTTParty.delete(url, :headers => @headers, :query => id)
+    end
+
   end
 
 end
